@@ -1,4 +1,4 @@
-export default function Banner() {
+export function Banner() {
     return (
         <div className="banner jarallax">
             <div className="container">

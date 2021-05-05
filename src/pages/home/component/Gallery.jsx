@@ -1,5 +1,5 @@
 
-export default function Gallery() {
+export function Gallery() {
     return (
         <section className="section-gallery">
         <div className="textbox">

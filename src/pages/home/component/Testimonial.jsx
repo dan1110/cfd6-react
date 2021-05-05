@@ -1,4 +1,4 @@
-export default function Testimonial() {
+export function Testimonial() {
     return (
         <section className="section-testimonial">
             <div className="container">

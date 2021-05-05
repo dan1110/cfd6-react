@@ -1,6 +1,6 @@
 import { CourseItem } from "../../../components/CourseItem";
 
-export default function CourseList() {
+export function CourseList() {
     return (
         <>
             <section className="section-courseoffline">
@@ -19,13 +19,12 @@ export default function CourseList() {
                             courseImg="img/img1.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
-                            status="sap-dien-ra"
                             teacherName="Dang Vuong"
                             avtTeacher="img/avt.png"
                         />
                         <CourseItem
                             courseName=" Animation"
-                            courseImg="img/img1.png"
+                            courseImg="img/img2.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
                             status="sap-dien-ra"
@@ -34,16 +33,15 @@ export default function CourseList() {
                         />
                         <CourseItem
                             courseName=" Animation"
-                            courseImg="img/img1.png"
+                            courseImg="img/img3.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
-                            status="sap-dien-ra"
                             teacherName="Dang Vuong"
                             avtTeacher="img/avt.png"
                         />
                         <CourseItem
                             courseName=" Animation"
-                            courseImg="img/img1.png"
+                            courseImg="img/img4.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
                             status="dang-dien-ra"
@@ -53,7 +51,7 @@ export default function CourseList() {
 
                         <CourseItem
                             courseName=" Animation"
-                            courseImg="img/img1.png"
+                            courseImg="img/img5.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
                             status="sap-dien-ra"
@@ -62,7 +60,7 @@ export default function CourseList() {
                         />
                         <CourseItem
                             courseName=" Animation"
-                            courseImg="img/img1.png"
+                            courseImg="img/img6.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
                             status="dang-dien-ra"
@@ -92,7 +90,7 @@ export default function CourseList() {
                             courseImg="img/img1.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
-                            status="sap-dien-ra"
+                            status="dang-dien-ra"
                             teacherName="Dang Vuong"
                             avtTeacher="img/avt.png"
                         />
@@ -101,7 +99,6 @@ export default function CourseList() {
                             courseImg="img/img1.png"
                             description="One of the best corporate fashion brands
                         in Sydney"
-                            status="sap-dien-ra"
                             teacherName="Dang Vuong"
                             avtTeacher="img/avt.png"
                         />

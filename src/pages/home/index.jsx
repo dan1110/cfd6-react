@@ -1,9 +1,11 @@
-import Action from "./component/Action";
-import Banner from "./component/Banner";
-import CourseList from "./component/CourseList";
-import Different from "./component/Different";
-import Gallery from "./component/Gallery";
-import Testimonial from "./component/Testimonial";
+import {
+    Action,
+    Banner,
+    CourseList,
+    Different,
+    Gallery,
+    Testimonial,
+} from "./component";
 
 export default function Home() {
     return (

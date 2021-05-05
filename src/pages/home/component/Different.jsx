@@ -1,4 +1,4 @@
-export default function Different() {
+export function Different() {
     return (
         <section className="section-different">
             <div className="container">

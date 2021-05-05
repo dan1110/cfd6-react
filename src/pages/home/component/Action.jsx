@@ -1,4 +1,4 @@
-export default function Action() {
+export function Action() {
     return (
         <section className="section-action">
             <div className="container">
