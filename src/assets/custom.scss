@@ -1,0 +1,14 @@
+.register-course {
+    .form {
+        label {
+            flex-wrap: wrap;
+        }
+        .error-text {
+            width: 100%;
+            margin-left: 180px;
+            color: red;
+            font-style: italic;
+            font-size: 12px;
+        }
+    }
+}

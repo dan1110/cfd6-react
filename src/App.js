@@ -1,11 +1,12 @@
 import { Header, Footer } from "./components";
-import Home from "./pages/home";
+import Cooprate from "./pages/cooperate";
+import Profile from "./pages/profile";
 
 function App() {
     return (
         <>
             <Header />
-            <Home />
+            <Profile />
             <Footer />
         </>
     );

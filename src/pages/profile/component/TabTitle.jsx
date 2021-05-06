@@ -1,6 +1,7 @@
 import React from "react";
 
-export function TabTitle() {
+export function TabTitle({setTab}) {
+  
   return (
     <div className="tab-title">
       <a href="#" className="active">
