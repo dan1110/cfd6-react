@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Email() {
+export function Email() {
     return (
         <div className="container">
             <div

@@ -1,4 +1,4 @@
-export default function CoinIntroduce() {
+export function CoinIntroduce() {
     return (
         <main className="paypage" id="main">
             <div className="container">

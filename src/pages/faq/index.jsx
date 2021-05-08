@@ -1,4 +1,4 @@
-export default function FAQ() {
+export function FAQ() {
     return (
         <main className="faqpage" id="main">
             <div className="container">

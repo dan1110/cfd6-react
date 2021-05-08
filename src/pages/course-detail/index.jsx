@@ -1,7 +1,13 @@
 import React from "react";
+// import { useParams } from "react-router";
 import { Banner, Introduce, Course, ProjectCourse } from "./component";
 
-export default function CourseDetail() {
+export function CourseDetail() {
+
+  //Dynamic router (URL param)
+  // let param = useParams();
+  // console.log(param);
+
   return (
     <>
       <main className="course-detail" id="main">

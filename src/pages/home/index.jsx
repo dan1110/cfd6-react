@@ -7,7 +7,7 @@ import {
     Testimonial,
 } from "./component";
 
-export default function Home() {
+export function Home() {
     return (
         <main className="homepage" id="main">
             <Banner />

@@ -1,4 +1,4 @@
-export default function CourseOff() {
+export function CourseOff() {
   return (
     <section className="section-2 section-blue">
       <div className="container">

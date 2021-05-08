@@ -12,3 +12,15 @@
         }
     }
 }
+.tab-content{
+    label {
+        flex-wrap: wrap;
+    }
+    .error-text {
+        width: 100%;
+        margin-left: 160px;
+        color: red;
+        font-style: italic;
+        font-size: 12px;
+    }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ErrorPage() {
+export function ErrorPage() {
     return (
         <main className="notfound" id="main">
             <div className="container">

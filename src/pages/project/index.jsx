@@ -1,7 +1,7 @@
 import React from "react";
 import Project from "./component/Project";
 
-export default function ProjectPage() {
+export function ProjectPage() {
   return (
     <main className="projectpage" id="main">
       <section className="section-1">

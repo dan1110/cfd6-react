@@ -1,4 +1,4 @@
-export default function Team() {
+export function Team() {
     return (
         <main className="team" id="main">
             <section>
