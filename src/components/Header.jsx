@@ -26,23 +26,29 @@ export function Header() {
 						<h1>CFD</h1>
 					</Link>
 					<div className="right">
-						<div className="have-login">
+						{/* <div className="have-login">
 							<div className="account">
-								{/* <a href="#" className="info"> */}
 								<Link to="/ca-nhan" className="info">
 									<div className="name">Trần Lê Trọng Nghĩa</div>
 									<div className="avatar">
 										<img src="img/avt.png" alt="" />
 									</div>
-									{/* </a> */}
 								</Link>
 							</div>
 							<div className="hamberger"></div>
 							<div className="sub">
 								<Link to="/ca-nhan/khoa-hoc-cua-toi">Khóa học của tôi</Link>
 								<Link to="/ca-nhan">Thông tin tài khoản</Link>
-								<a href="#">Đăng xuất</a>
+								<Link>Đăng xuất</Link>
 							</div>
+						</div> */}
+						<div class="not-login bg-none">
+							<Link to="/dang-nhap" class="btn-register">
+								Đăng nhập
+							</Link>
+							<Link to="/dang-ki" class="btn main btn-open-login">
+								Đăng ký
+							</Link>
 						</div>
 					</div>
 				</div>

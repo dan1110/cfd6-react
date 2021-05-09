@@ -1,26 +1,40 @@
 .register-course {
-    .form {
-        label {
-            flex-wrap: wrap;
-        }
-        .error-text {
-            width: 100%;
-            margin-left: 180px;
-            color: red;
-            font-style: italic;
-            font-size: 12px;
-        }
-    }
+	.form {
+		label {
+			flex-wrap: wrap;
+		}
+		.error-text {
+			width: 100%;
+			margin-left: 180px;
+			color: red;
+			font-style: italic;
+			font-size: 12px;
+		}
+	}
 }
-.tab-content{
-    label {
-        flex-wrap: wrap;
-    }
-    .error-text {
-        width: 100%;
-        margin-left: 160px;
-        color: red;
-        font-style: italic;
-        font-size: 12px;
-    }
+.tab-content {
+	label {
+		flex-wrap: wrap;
+	}
+	.error-text {
+		width: 100%;
+		margin-left: 160px;
+		color: red;
+		font-style: italic;
+		font-size: 12px;
+	}
+}
+.popup-login {
+	input {
+		margin-bottom: 0 !important;
+	}
+	input[type='password'] {
+		margin-top: 15px;
+	}
+	.error-text {
+		width: 100%;
+		color: red;
+		font-style: italic;
+		font-size: 12px;
+	}
 }
