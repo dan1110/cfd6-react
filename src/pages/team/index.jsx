@@ -14,7 +14,7 @@ export function Team() {
                         <div className="item col-md-6 col-sm-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">trần nghĩa</div>
@@ -28,7 +28,7 @@ export function Team() {
                         <div className="item col-md-6 col-sm-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">
@@ -43,7 +43,7 @@ export function Team() {
                         <div className="item col-md-6 col-sm-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">đặng thuyền quân</div>
@@ -56,7 +56,7 @@ export function Team() {
                         <div className="item col-md-6 col-sm-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">nguyễn đức huy</div>
@@ -70,7 +70,7 @@ export function Team() {
                             <div className="wrap">
                                 <div className="cover">
                                     <span className="text">H</span>
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">Diệp anh thy</div>
@@ -81,7 +81,7 @@ export function Team() {
                         <div className="item col-md-3 col-sm-4 col-xs-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">huỳnh tiến tài</div>
@@ -92,7 +92,7 @@ export function Team() {
                         <div className="item col-md-3 col-sm-4 col-xs-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">Ngô thành long</div>
@@ -103,7 +103,7 @@ export function Team() {
                         <div className="item col-md-3 col-sm-4 col-xs-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">trần anh tuấn</div>
@@ -114,7 +114,7 @@ export function Team() {
                         <div className="item col-md-3 col-sm-4 col-xs-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">ngô thành long</div>
@@ -125,7 +125,7 @@ export function Team() {
                         <div className="item col-md-3 col-sm-4 col-xs-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">
@@ -138,7 +138,7 @@ export function Team() {
                         <div className="item col-md-3 col-sm-4 col-xs-6">
                             <div className="wrap">
                                 <div className="cover">
-                                    <img src="img/thumb-member.jpg" alt="" />
+                                    <img src="/img/thumb-member.jpg" alt="" />
                                 </div>
                                 <div className="info">
                                     <div className="name">phạm thành trung</div>

@@ -17,15 +17,15 @@ export function CourseItem({ courseName, courseImg, description, status, teacher
 					<div className="hover">
 						<div className="top">
 							<div className="user">
-								<img src="img/icon-user-white.svg" alt="" />
+								<img src="/img/icon-user-white.svg" alt="" />
 								12
 							</div>
 							<div className="heart">
-								<img src="img/icon-heart.svg" alt="" /> 100
+								<img src="/img/icon-heart.svg" alt="" /> 100
 							</div>
 						</div>
 						<div className="share">
-							<img src="img/icon-viewmore.svg" alt="" />
+							<img src="/img/icon-viewmore.svg" alt="" />
 						</div>
 					</div>
 				</a>

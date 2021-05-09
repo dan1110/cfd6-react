@@ -11,4 +11,3 @@ export * from "./profile";
 export * from "./project";
 export * from "./register";
 export * from "./team";
-export * from "./login";

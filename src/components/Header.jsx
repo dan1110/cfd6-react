@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import useDeLayLink from '../hook/useDelayLink';
 
@@ -9,6 +9,10 @@ export function Header() {
 
 	let deLayLink = useDeLayLink();
 
+	function openModal(e) {
+		e.preventDefault();
+		document.querySelector('.res').style.display = 'flex';
+	}
 	return (
 		<>
 			<header id="header">
@@ -22,7 +26,7 @@ export function Header() {
 						<span className="text">menu</span>
 					</div>
 					<Link onClick={deLayLink} to="/" className="logo">
-						<img src="img/logo.svg" alt="" />
+						<img src="/img/logo.svg" alt="" />
 						<h1>CFD</h1>
 					</Link>
 					<div className="right">
@@ -31,7 +35,7 @@ export function Header() {
 								<Link to="/ca-nhan" className="info">
 									<div className="name">Trần Lê Trọng Nghĩa</div>
 									<div className="avatar">
-										<img src="img/avt.png" alt="" />
+										<img src="/img/avt.png" alt="" />
 									</div>
 								</Link>
 							</div>
@@ -43,9 +47,9 @@ export function Header() {
 							</div>
 						</div> */}
 						<div class="not-login bg-none">
-							<Link to="/dang-nhap" class="btn-register">
+							<a href="#" class="btn-register" onClick={openModal}>
 								Đăng nhập
-							</Link>
+							</a>
 							<Link to="/dang-ki" class="btn main btn-open-login">
 								Đăng ký
 							</Link>

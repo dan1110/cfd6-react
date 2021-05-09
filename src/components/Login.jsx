@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import reactDom from 'react-dom';
 import { Link } from 'react-router-dom';
 
-export function Login() {
+export default function Login() {
 	const [loginForm, setLoginForm] = useState({
-		name: '',
+		user: '',
 		pass: '',
 	});
 	const [error, setError] = useState({
@@ -22,26 +22,20 @@ export function Login() {
 	}
 
 	function handleSubmit() {
-		// console.log(loginForm);
 		let errorInput = {};
 		if (!loginForm.user) {
 			errorInput.user = 'Vui lòng nhập Email/ Số điện thoại';
 		}
-		// if (
-		// 	loginForm.user &&
-		// 	(!/(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(loginForm.user) ||
-		// 		!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(loginForm.user))
-		// ) {
-		// 	errorInput.user = 'Email hoặc Số điện thoại không đúng định dạng';
-		// }
-
-        //pass
-        if (!loginForm.pass) {
-            errorInput.pass = 'Vui lòng nhập mật khẩu';
-        }
-		// if (loginForm.pass && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/.test(loginForm.pass)) {
-		// 	errorInput.pass = 'Mật khẩu ít nhất có 8 kí tự';
-		// }
+		if (loginForm.user && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(loginForm.user)) {
+			errorInput.user = 'Email hoặc Số điện thoại không đúng định dạng';
+		}
+		//pass
+		if (!loginForm.pass) {
+			errorInput.pass = 'Vui lòng nhập mật khẩu';
+		}
+		if (loginForm.pass && !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(loginForm.pass)) {
+			errorInput.pass = 'Mật khẩu tối thiểu 8 ký tự, ít nhất một chữ cái và một số';
+		}
 
 		setError(errorInput);
 		if (Object.keys(errorInput).length === 0) {
@@ -49,11 +43,16 @@ export function Login() {
 		}
 	}
 
+	function closePopup(e) {
+		e.preventDefault();
+		document.querySelector('.res').style.display = 'none';
+	}
+
 	return reactDom.createPortal(
-		<div className="popup-form popup-login">
+		<div className="popup-form popup-login res" style={{ display: 'none' }}>
 			<div className="wrap">
 				{/* login-form */}
-				<div className="ct_login">
+				<div className="ct_login" style={{ display: 'block' }}>
 					<h2 className="title">Đăng nhập</h2>
 					<input type="text" placeholder="Email / Số điện thoại" name="user" onChange={handleChangeInput} />
 					{error.user && <span className="error-text">{error.user}</span>}
@@ -74,18 +73,18 @@ export function Login() {
 					<div className="btn rect main btn-login" onClick={handleSubmit}>
 						đăng nhập
 					</div>
-					<div className="text-register" style={{}}>
+					<div className="text-register">
 						<strong>hoặc đăng ký bằng</strong>
 					</div>
 					<div>
 						<div className="btn btn-icon rect white btn-google">
-							<img src="img/google.svg" alt="" />
+							<img src="/img/google.svg" alt="" />
 							Google
 						</div>
 					</div>
-					<Link exact to="/" className="close">
-						<img src="img/close-icon.png" alt="" />
-					</Link>
+					<a href="#" className="close" onClick={closePopup}>
+						<img src="/img/close-icon.png" alt="" />
+					</a>
 				</div>
 				{/* email form */}
 				{/* <div className="ct_email">
@@ -94,12 +93,12 @@ export function Login() {
 						<div className="btn rect main btn-next">Tiếp theo</div>
 						<div className="back" />
 						<div className="close">
-							<img src="img/close-icon.png" alt="" />
+							<img src="/img/close-icon.png" alt="" />
 						</div>
 					</div> */}
 			</div>
 		</div>,
 
-		document.body
+		document.getElementById('root2')
 	);
 }

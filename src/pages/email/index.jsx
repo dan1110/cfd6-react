@@ -16,7 +16,7 @@ export function Email() {
                 <div className="inner" style={{ padding: "50px" }}>
                     <div className="logo">
                         <img
-                            src="img/logo.svg"
+                            src="/img/logo.svg"
                             alt=""
                             style={{ width: "100px", marginBottom: "10px" }}
                         />

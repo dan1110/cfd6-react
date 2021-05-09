@@ -23,7 +23,7 @@ export function Banner() {
         <div className="container">
           <div className="video">
             <div className="icon">
-              <img src="img/play-icon-white.png" alt="" />
+              <img src="/img/play-icon-white.png" alt="" />
             </div>{" "}
             <span>giới thiệu</span>
           </div>

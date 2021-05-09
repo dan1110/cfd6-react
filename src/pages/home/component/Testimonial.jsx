@@ -18,7 +18,7 @@ export function Testimonial() {
                                             <p>Thành viên CFD1</p>
                                         </div>
                                         <div className="quotes">
-                                            <img src="img/quotes.svg" alt="" />
+                                            <img src="/img/quotes.svg" alt="" />
                                         </div>
                                     </div>
                                     <div className="content">
@@ -29,7 +29,7 @@ export function Testimonial() {
                                     <div className="bottom">
                                         <a href="#" target="_blank">
                                             <img
-                                                src="img/facebook.svg"
+                                                src="/img/facebook.svg"
                                                 alt=""
                                             />
                                         </a>
@@ -43,7 +43,7 @@ export function Testimonial() {
                                             <p>Thành viên CFD1</p>
                                         </div>
                                         <div className="quotes">
-                                            <img src="img/quotes.svg" alt="" />
+                                            <img src="/img/quotes.svg" alt="" />
                                         </div>
                                     </div>
                                     <div className="content">
@@ -58,7 +58,7 @@ export function Testimonial() {
                                     <div className="bottom">
                                         <a href="#" target="_blank">
                                             <img
-                                                src="img/facebook.svg"
+                                                src="/img/facebook.svg"
                                                 alt=""
                                             />
                                         </a>
@@ -72,7 +72,7 @@ export function Testimonial() {
                                             <p>Thành viên CFD1</p>
                                         </div>
                                         <div className="quotes">
-                                            <img src="img/quotes.svg" alt="" />
+                                            <img src="/img/quotes.svg" alt="" />
                                         </div>
                                     </div>
                                     <div className="content">
@@ -87,7 +87,7 @@ export function Testimonial() {
                                     <div className="bottom">
                                         <a href="#" target="_blank">
                                             <img
-                                                src="img/facebook.svg"
+                                                src="/img/facebook.svg"
                                                 alt=""
                                             />
                                         </a>
@@ -118,7 +118,7 @@ export function Testimonial() {
                                                 </div>
                                                 <div className="quotes">
                                                     <img
-                                                        src="img/quotes.svg"
+                                                        src="/img/quotes.svg"
                                                         alt=""
                                                     />
                                                 </div>
@@ -132,7 +132,7 @@ export function Testimonial() {
                                             <div className="bottom">
                                                 <a href="#" target="_blank">
                                                     <img
-                                                        src="img/facebook.svg"
+                                                        src="/img/facebook.svg"
                                                         alt=""
                                                     />
                                                 </a>
@@ -161,7 +161,7 @@ export function Testimonial() {
                                                 </div>
                                                 <div className="quotes">
                                                     <img
-                                                        src="img/quotes.svg"
+                                                        src="/img/quotes.svg"
                                                         alt=""
                                                     />
                                                 </div>
@@ -175,7 +175,7 @@ export function Testimonial() {
                                             <div className="bottom">
                                                 <a href="#" target="_blank">
                                                     <img
-                                                        src="img/facebook.svg"
+                                                        src="/img/facebook.svg"
                                                         alt=""
                                                     />
                                                 </a>
@@ -204,7 +204,7 @@ export function Testimonial() {
                                                 </div>
                                                 <div className="quotes">
                                                     <img
-                                                        src="img/quotes.svg"
+                                                        src="/img/quotes.svg"
                                                         alt=""
                                                     />
                                                 </div>
@@ -218,7 +218,7 @@ export function Testimonial() {
                                             <div className="bottom">
                                                 <a href="#" target="_blank">
                                                     <img
-                                                        src="img/facebook.svg"
+                                                        src="/img/facebook.svg"
                                                         alt=""
                                                     />
                                                 </a>
