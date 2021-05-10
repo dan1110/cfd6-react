@@ -4,6 +4,7 @@ export function Register() {
 		name: '',
 		phone: '',
 		email: '',
+		coin: false,
 		fb: '',
 		pay: '',
 		idea: '',
@@ -12,10 +13,25 @@ export function Register() {
 		name: '',
 		phone: '',
 		email: '',
+		coin: false,
 		fb: '',
 		pay: '',
 		idea: '',
 	});
+
+	function hanldeChecked(e) {
+		let value = e.target.dataset.value;
+		let name = e.target.dataset.name;
+		let type = e.target.type;
+		if (type === 'checkbox') {
+			value = e.target.checked;
+			name = e.target.name;
+		}
+		setRegisterForm({
+			...registerForm,
+			[name]: value,
+		});
+	}
 
 	function handleChangeInput(e) {
 		const name = e.target.name;
@@ -149,7 +165,12 @@ export function Register() {
 									Hiện có <strong>300 COIN</strong>
 									{/* Giảm giá còn <span><strong>5.800.000 VND</strong>, còn lại 100 COIN</span> */}
 									{/* Cần ít nhất 200 COIN để giảm giá */}
-									<input type="checkbox" defaultChecked="checked" />
+									<input
+										type="checkbox"
+										name="coin"
+										value={registerForm.coin}
+										defaultChecked="false"
+									/>
 									<span className="checkmark" />
 								</div>
 							</label>
