@@ -1,20 +1,52 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+
+let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+	namePattern = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/i,
+	phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/i,
+	urlPattern = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/i;
 
 export default function useFormValidate(initialForm, validate) {
-  let [form, setForm] = useState(initialForm);
-  let [error, setError] = useState({});
+	let [form, setForm] = useState(initialForm);
+	let [error, setError] = useState({});
 
-  function inputChange(e) {
-    let name = e.target.name;
-    let value = e.target.value;
+	function inputChange(e) {
+		let name = e.target.name;
+		let value = e.target.value;
 
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  }
+		setForm({
+			...form,
+			[name]: value,
+		});
+	}
 
-  function check() {}
+	function check() {
+		let errorInput = {};
 
-  return form, error, inputChange, check;
+		let { rule, message } = validate;
+
+		for (let i in rule) {
+			let r = rule[i];
+			let m = message[i] || {};
+
+			if (r.required && !form[i]?.trim()) {
+				errorInput[i] = m?.required || 'Không được để trống';
+			}
+			if (r.pattern && form[i]) {
+				let { pattern } = r;
+				if (pattern === 'email') pattern = emailPattern;
+				if (pattern === 'phone') pattern = phonePattern;
+				if (pattern === 'url') pattern = urlPattern;
+				if (pattern === 'name') pattern = namePattern;
+
+				if (!pattern?.test(form[i])) {
+					errorInput[i] = m?.pattern || `Vui lòng nhập đúng định dạng`;
+				}
+			}
+		}
+
+		setError(errorInput);
+		return errorInput;
+	}
+
+	return { form, error, setForm, inputChange, check };
 }

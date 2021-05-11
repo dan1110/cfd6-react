@@ -8,7 +8,8 @@ export default function useDeLayLink() {
 		let href = e.currentTarget.getAttribute('href');
 		setTimeout(() => {
 			history.push(href);
-		}, 1000);
+			document.querySelector('.loading').style.transform = 'scale(0)';
+		}, 300);
 		document.body.classList.remove('menu-is-show');
 	}
 	return deLayLink;

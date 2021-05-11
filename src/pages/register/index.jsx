@@ -1,90 +1,75 @@
 import React, { useState } from 'react';
+import useFormValidate from '../../hook/useFormValidate';
 export function Register() {
-	const [registerForm, setRegisterForm] = useState({
-		name: '',
-		phone: '',
-		email: '',
-		coin: false,
-		fb: '',
-		pay: '',
-		idea: '',
-	});
-	const [error, setError] = useState({
-		name: '',
-		phone: '',
-		email: '',
-		coin: false,
-		fb: '',
-		pay: '',
-		idea: '',
-	});
-
-	function hanldeChecked(e) {
-		let value = e.target.dataset.value;
-		let name = e.target.dataset.name;
-		let type = e.target.type;
-		if (type === 'checkbox') {
-			value = e.target.checked;
-			name = e.target.name;
+	let { form, error, setForm, inputChange, check } = useFormValidate(
+		{
+			name: '',
+			phone: '',
+			email: '',
+			coin: false,
+			fb: '',
+			payment: 'Banker',
+			idea: '',
+		},
+		{
+			rule: {
+				name: {
+					required: true,
+					pattern: 'name',
+				},
+				phone: {
+					required: true,
+					pattern: 'phone',
+				},
+				email: {
+					required: true,
+					pattern: 'email',
+				},
+				fb: {
+					pattern: /(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)/i,
+				},
+			},
+			message: {
+				name: {
+					required: 'Họ và tên không được bỏ trống',
+					pattern: 'Tên không được nhập bằng chữ số',
+				},
+				phone: {
+					required: 'Số điện thoại không được bỏ trống',
+					pattern: 'Phải là số điện thoại Việt Nam',
+				},
+				email: {
+					required: 'Email không được bỏ trống',
+					pattern: 'Email không đúng định dạng',
+				},
+				fb: {
+					pattern: 'Link Facebook không đúng dạng',
+				},
+			},
 		}
-		setRegisterForm({
-			...registerForm,
-			[name]: value,
-		});
-	}
+	);
 
-	function handleChangeInput(e) {
-		const name = e.target.name;
-		const value = e.target.value;
-		setRegisterForm({
-			...registerForm,
+	function handleSelected(e) {
+		e.preventDefault();
+		let name = e.target.dataset.name;
+		let value = e.target.dataset.value;
+
+		if (e.target.type === 'checkbox') {
+			name = e.target.name;
+			value = e.target.checked;
+		}
+		setForm({
+			...form,
 			[name]: value,
 		});
+
 	}
 
 	function handleSubmit() {
-		let errorInput = {};
+		let errorInput = check();
 
-		//name
-		if (!registerForm.name.trim()) {
-			errorInput.name = 'Vui lòng nhập tên';
-		}
-
-		//phone
-		if (registerForm.phone && !/(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(registerForm.phone)) {
-			errorInput.phone = 'Số điện thoại không đúng định dạng';
-		}
-		if (!registerForm.phone.trim()) {
-			errorInput.phone = 'Vui lòng nhập số điện thoại';
-		}
-
-		//email
-		if (!registerForm.email) {
-			errorInput.email = 'Email không được bỏ trống';
-		}
-		if (registerForm.email && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(registerForm.email)) {
-			errorInput.email = 'Email không đúng định dạng';
-		}
-
-		//facebook
-		if (
-			registerForm.fb &&
-			!/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(registerForm.fb)
-		) {
-			errorInput.fb = 'Link Facebook không đúng định dạng';
-		}
-		if (!registerForm.fb.trim()) {
-			errorInput.fb = 'Vui lòng nhập link facebook';
-		}
-
-		//idea
-		if (!registerForm.idea.trim()) {
-			errorInput.idea = 'Vui lòng nhập ý kiến của bạn';
-		}
-
-		setError(errorInput);
 		if (Object.keys(errorInput).length === 0) {
-			console.log(registerForm);
+			console.log(form);
 		}
 	}
 
@@ -115,8 +100,8 @@ export function Register() {
 									type="text"
 									placeholder="Họ và tên bạn"
 									name="name"
-									value={registerForm.name}
-									onChange={handleChangeInput}
+									value={form.name}
+									onChange={inputChange}
 								/>
 								{error.name && <span className="error-text">{error.name}</span>}
 							</label>
@@ -128,8 +113,8 @@ export function Register() {
 									type="text"
 									placeholder="Số điện thoại"
 									name="phone"
-									value={registerForm.phone}
-									onChange={handleChangeInput}
+									value={form.phone}
+									onChange={inputChange}
 								/>
 								{error.phone && <span className="error-text">{error.phone}</span>}
 							</label>
@@ -141,8 +126,8 @@ export function Register() {
 									type="text"
 									placeholder="Email của bạn"
 									name="email"
-									value={registerForm.email}
-									onChange={handleChangeInput}
+									value={form.email}
+									onChange={inputChange}
 								/>
 								{error.email && <span className="error-text">{error.email}</span>}
 							</label>
@@ -154,8 +139,8 @@ export function Register() {
 									type="text"
 									placeholder="https://facebook.com"
 									name="fb"
-									value={registerForm.fb}
-									onChange={handleChangeInput}
+									value={form.fb}
+									onChange={inputChange}
 								/>
 								{error.fb && <span className="error-text">{error.fb}</span>}
 							</label>
@@ -168,8 +153,9 @@ export function Register() {
 									<input
 										type="checkbox"
 										name="coin"
-										value={registerForm.coin}
-										defaultChecked="false"
+										value={form.coin}
+										defaultChecked={form.coin}
+										onChange={handleSelected}
 									/>
 									<span className="checkmark" />
 								</div>
@@ -179,8 +165,12 @@ export function Register() {
 								<div className="select">
 									<div className="head">Chuyển khoản</div>
 									<div className="sub">
-										<a href="#">Chuyển khoản</a>
-										<a href="#">Thanh toán tiền mặt</a>
+										<a href="#" data-name="payment" data-value="Banker" onClick={handleSelected}>
+											Chuyển khoản
+										</a>
+										<a href="#" data-name="payment" data-value="Craft" onClick={handleSelected}>
+											Thanh toán tiền mặt
+										</a>
 									</div>
 								</div>
 							</label>
@@ -190,10 +180,9 @@ export function Register() {
 									type="text"
 									placeholder="Mong muốn cá nhân và lịch bạn có thể học."
 									name="idea"
-									value={registerForm.idea}
-									onChange={handleChangeInput}
+									value={form.idea}
+									onChange={inputChange}
 								/>
-								{error.idea && <span className="error-text">{error.idea}</span>}
 							</label>
 							<div className="btn main rect" onClick={handleSubmit}>
 								đăng ký

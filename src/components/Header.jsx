@@ -9,6 +9,10 @@ export function Header() {
 
 	let deLayLink = useDeLayLink();
 
+	function _onClick() {
+		document.querySelector('.loading').style.transform = 'scale(20)';
+	}
+
 	function openModal(e) {
 		e.preventDefault();
 		document.querySelector('.res').style.display = 'flex';
@@ -25,7 +29,7 @@ export function Header() {
 						</div>
 						<span className="text">menu</span>
 					</div>
-					<Link onClick={deLayLink} to="/" className="logo">
+					<Link onClick={(e) => {_onClick(); deLayLink(e)}} to="/" className="logo">
 						<img src="/img/logo.svg" alt="" />
 						<h1>CFD</h1>
 					</Link>
@@ -50,7 +54,7 @@ export function Header() {
 							<a href="#" class="btn-register" onClick={openModal}>
 								Đăng nhập
 							</a>
-							<Link to="/dang-ki" class="btn main btn-open-login">
+							<Link to="/dang-ki" class="btn main" onClick={(e) => {_onClick(); deLayLink(e)}}>
 								Đăng ký
 							</Link>
 						</div>
@@ -63,27 +67,27 @@ export function Header() {
 						<a href="#">Đăng ký / Đăng nhập</a>
 					</li>
 					<li>
-						<NavLink exact to="/" onClick={deLayLink}>
+						<NavLink exact to="/" onClick={(e) => {_onClick(); deLayLink(e)}}>
 							Trang chủ
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/team" onClick={deLayLink}>
+						<NavLink to="/team" onClick={(e) => {_onClick(); deLayLink(e)}}>
 							CFD Team
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/khoa-hoc" onClick={deLayLink}>
+						<NavLink to="/khoa-hoc" onClick={(e) => {_onClick(); deLayLink(e)}}>
 							Khóa Học
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/du-an" onClick={deLayLink}>
+						<NavLink to="/du-an" onClick={(e) => {_onClick(); deLayLink(e)}}>
 							Dự Án
 						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/lien-he" onClick={deLayLink}>
+						<NavLink to="/lien-he" onClick={(e) => {_onClick(); deLayLink(e)}}>
 							Liên hệ
 						</NavLink>
 					</li>

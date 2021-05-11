@@ -1,45 +1,43 @@
 import React, { useState } from 'react';
 import reactDom from 'react-dom';
 import { Link } from 'react-router-dom';
+import useFormValidate from '../hook/useFormValidate';
 
 export default function Login() {
-	const [loginForm, setLoginForm] = useState({
-		user: '',
-		pass: '',
-	});
-	const [error, setError] = useState({
-		user: '',
-		pass: '',
-	});
-
-	function handleChangeInput(e) {
-		const name = e.target.name;
-		const value = e.target.value;
-		setLoginForm({
-			...loginForm,
-			[name]: value,
-		});
-	}
+	let { form, error, inputChange, check } = useFormValidate(
+		{
+			user: '',
+			pass: '',
+		},
+		{
+			rule: {
+				user: {
+					required: true,
+					pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
+				},
+				pass: {
+					required: true,
+					pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i,
+				},
+			},
+			message: {
+				user: {
+					required: 'Email/ SDT không được bỏ trống',
+					pattern: 'Email/ SDT không đúng định dạng',
+				},
+				pass: {
+					required: 'Mật khẩu không được bỏ trống',
+					pattern: 'Mật khẩu tối thiểu 8 ký tự, ít nhất một chữ cái và một số',
+				},
+			},
+		}
+	);
 
 	function handleSubmit() {
-		let errorInput = {};
-		if (!loginForm.user) {
-			errorInput.user = 'Vui lòng nhập Email/ Số điện thoại';
-		}
-		if (loginForm.user && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(loginForm.user)) {
-			errorInput.user = 'Email hoặc Số điện thoại không đúng định dạng';
-		}
-		//pass
-		if (!loginForm.pass) {
-			errorInput.pass = 'Vui lòng nhập mật khẩu';
-		}
-		if (loginForm.pass && !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(loginForm.pass)) {
-			errorInput.pass = 'Mật khẩu tối thiểu 8 ký tự, ít nhất một chữ cái và một số';
-		}
+		let errorInput = check();
 
-		setError(errorInput);
 		if (Object.keys(errorInput).length === 0) {
-			console.log(loginForm);
+			console.log(form);
 		}
 	}
 
@@ -54,10 +52,10 @@ export default function Login() {
 				{/* login-form */}
 				<div className="ct_login" style={{ display: 'block' }}>
 					<h2 className="title">Đăng nhập</h2>
-					<input type="text" placeholder="Email / Số điện thoại" name="user" onChange={handleChangeInput} />
+					<input type="text" placeholder="Email / Số điện thoại" name="user" onChange={inputChange} />
 					{error.user && <span className="error-text">{error.user}</span>}
 
-					<input type="password" placeholder="Mật khẩu" name="pass" onChange={handleChangeInput} />
+					<input type="password" placeholder="Mật khẩu" name="pass" onChange={inputChange} />
 					{error.pass && <span className="error-text">{error.pass}</span>}
 					<div className="remember">
 						<label className="btn-remember">
