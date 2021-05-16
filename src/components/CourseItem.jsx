@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 
-export function CourseItem({ courseName, courseImg, description, status, teacherName, avtTeacher }) {
+export function CourseItem({ title, thumbnail, short_description, course_status, teacher, slug }) {
 	return (
 		<div className="col-md-4 course">
 			<div className="wrap">
-				<a className="cover" href="#">
-					<img src={courseImg} alt="" />
+				<Link className="cover" to={`/khoa-hoc/${slug}`}>
+					<img src={thumbnail.link} alt="" />
 					{/* <span className="badge b2">Đang diễn ra</span> */}
-					{status === 'dang-dien-ra' ? (
-						<span className="badge b1">Đang diễn ra</span>
-					) : status === 'sap-dien-ra' ? (
-						<span className="badge b2">Sắp diễn ra</span>
+					{course_status === 'dang-dien-ra' ? (
+						<span className="badge b2">Đang diễn ra</span>
+					) : course_status === 'sap-khai-gian' ? (
+						<span className="badge b3">Sắp diễn ra</span>
 					) : (
-						<span className="badge b3">Đã kết thúc</span>
+						<span className="badge b1">Đã kết thúc</span>
 					)}
 					<div className="hover">
 						<div className="top">
@@ -28,21 +28,21 @@ export function CourseItem({ courseName, courseImg, description, status, teacher
 							<img src="/img/icon-viewmore.svg" alt="" />
 						</div>
 					</div>
-				</a>
+				</Link>
 				<div className="info">
 					<a className="name" href="#">
-						{courseName}
+						{title}
 					</a>
-					<p className="des">{description}</p>
+					<p className="des">{short_description}</p>
 				</div>
 				<div className="bottom">
 					<div className="teacher">
 						<div className="avatar">
-							<img src={avtTeacher} alt="avt" />
+							<img src={teacher.avatar.link} alt="avt" />
 						</div>
-						<div className="name">{teacherName}</div>
+						<div className="name">{teacher.title}</div>
 					</div>
-					<Link to="/dang-ki" className="register-btn">
+					<Link to={`/dang-ki/${slug}`} className="register-btn">
 						Đăng Ký
 					</Link>
 				</div>

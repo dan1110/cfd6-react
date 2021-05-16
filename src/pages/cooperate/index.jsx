@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../assets/custom.scss';
 import useFormValidate from '../../hook/useFormValidate';
+import contactApi from '../../services/contactApi';
 
 export function Cooprate() {
+	const [success, setSuccess] = useState(false);
 	let { form, error, inputChange, check } = useFormValidate(
 		{
 			name: '',
@@ -50,24 +52,25 @@ export function Cooprate() {
 					pattern: 'Email không đúng định dạng',
 				},
 				website: {
-          required: 'Website không được bỏ trống',
-          pattern: 'Website không đúng dạng',
+					required: 'Website không được bỏ trống',
+					pattern: 'Website không đúng dạng',
 				},
-        title:{
-          required: 'Tiêu đề không được bỏ trống',
-        },
-        content:{
-          required: 'Nội dung không được bỏ trống',
-        }
+				title: {
+					required: 'Tiêu đề không được bỏ trống',
+				},
+				content: {
+					required: 'Nội dung không được bỏ trống',
+				},
 			},
 		}
 	);
 
-	function handleSubmit() {
-		let errorInput = check();
+	async function handleSubmit() {
+		check();
 
-		if (Object.keys(errorInput).length === 0) {
-			console.log(form);
+		if (Object.keys(error).length === 0) {
+			let res = await contactApi.addContact(form);
+			setSuccess(res.success);
 		}
 	}
 
@@ -160,6 +163,14 @@ export function Cooprate() {
 						đăng ký
 					</div>
 				</div>
+				{success && (
+					<p
+						className="success"
+						style={{ color: 'green', fontSize: 20, textAlign: 'center', marginTop: 20, fontWeight: 700 }}
+					>
+						Gửi thành công
+					</p>
+				)}
 			</section>
 		</main>
 	);

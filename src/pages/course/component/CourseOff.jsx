@@ -1,6 +1,8 @@
 import { CourseItem } from '../../../components/CourseItem';
+import useAuth from '../../../hook/useAuth';
 
 export function CourseOff() {
+	let { data } = useAuth();
 	return (
 		<section className="section-2 section-blue">
 			<div className="container">

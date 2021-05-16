@@ -5,9 +5,6 @@ export function TabContent() {
   return (
     <div className="tab-content">
       <Info />
-      
-      
-     
     </div>
   );
 }

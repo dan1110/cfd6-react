@@ -1,10 +1,14 @@
-import { CourseOn, CourseOff } from "./component";
+import CourseList from '../../components/CourseList';
+import { CourseOn, CourseOff } from './component';
 
 export function Course() {
-  return (
-    <main className="homepage" id="main">
-      <CourseOn />
-      <CourseOff />
-    </main>
-  );
+	// let [state, setState] = useState({ online: [], offline: [] });
+	// useEffect(() => {
+	// 	homeApi.home().then((res) => setState(res));
+	// }, []);
+	return (
+		<main className="homepage" id="main">
+			<CourseList />
+		</main>
+	);
 }

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router';
 import useFormValidate from '../../hook/useFormValidate';
+import courseRegisterApi from '../../services/courseRegisterApi';
 export function Register() {
+	const [state, setState] = useState();
+	let { slug } = useParams();
 	let { form, error, setForm, inputChange, check } = useFormValidate(
 		{
 			name: '',
@@ -26,7 +30,8 @@ export function Register() {
 					pattern: 'email',
 				},
 				fb: {
-					pattern: /(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)/i,
+					pattern:
+						/(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w\.)*#!\/)?(?:pages\/)?(?:[\w\-\.]*\/)*([\w\-\.]*)/i,
 				},
 			},
 			message: {
@@ -62,15 +67,17 @@ export function Register() {
 			...form,
 			[name]: value,
 		});
-
 	}
 
-	function handleSubmit() {
-		let errorInput = check();
+	async function handleSubmit() {
+		check();
 
-		if (Object.keys(errorInput).length === 0) {
-			console.log(form);
-		}
+		// console.log(form);
+		let res = await courseRegisterApi.addCourse(form, slug);
+		// if (res?.success) {
+		// 	setState(res.success);
+		// }
+		console.log(res.success);
 	}
 
 	return (
@@ -187,6 +194,20 @@ export function Register() {
 							<div className="btn main rect" onClick={handleSubmit}>
 								đăng ký
 							</div>
+							{state && (
+								<p
+									className="success"
+									style={{
+										color: 'green',
+										fontSize: 20,
+										textAlign: 'center',
+										marginTop: 20,
+										fontWeight: 700,
+									}}
+								>
+									{state}
+								</p>
+							)}
 						</div>
 					</div>
 				</div>

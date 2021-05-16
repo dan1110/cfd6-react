@@ -1,63 +1,67 @@
 import React, { useState } from 'react';
+import useAuth from '../../../hook/useAuth';
+import useFormValidate from '../../../hook/useFormValidate';
+import profileApi from '../../../services/profileApi';
 
 export function Info() {
-	const [infoForm, setInfoForm] = useState({
-		name: '',
-		phone: '',
-		fb: '',
-		skype: '',
-	});
-	const [error, setError] = useState({
-		name: '',
-		phone: '',
-		fb: '',
-		skype: '',
-	});
+	let { data, updateInfo } = useAuth();
+	console.log(data);
 
-	function handleChangeInput(e) {
-		const name = e.target.name;
-		const value = e.target.value;
-		setInfoForm({
-			...infoForm,
-			[name]: value,
-		});
-	}
+	let { form, error, setForm, inputChange, check } = useFormValidate(
+		{
+			...data,
+		},
+		{
+			rule: {
+				name: {
+					required: true,
+					pattern: 'name',
+				},
+				phone: {
+					required: true,
+					pattern: 'phone',
+				},
+				email: {
+					required: true,
+					pattern: 'email',
+				},
+				fb: {
+					required: true,
+					pattern: 'fb',
+				},
+				skype: {
+					required: true,
+					pattern: 'skype',
+				},
+			},
+			message: {
+				name: {
+					required: 'Họ và tên không được bỏ trống',
+					pattern: 'Tên không được nhập bằng chữ số',
+				},
+				phone: {
+					required: 'Số điện thoại không được bỏ trống',
+					pattern: 'Phải là số điện thoại Việt Nam',
+				},
+				email: {
+					required: 'Email không được bỏ trống',
+					pattern: 'Email không đúng định dạng',
+				},
+				fb: {
+					required: 'Facebook không được bỏ trống',
+					pattern: 'Link Facebook không đúng dạng',
+				},
+				skype: {
+					required: 'Skype không được bỏ trống',
+					pattern: 'Link Skype không đúng dạng',
+				},
+			},
+		}
+	);
 
 	function handleSubmit() {
-		// console.log(infoForm);
-		let errorInput = {};
-		if (!infoForm.name.trim()) {
-			errorInput.name = 'Vui lòng nhập tên';
-		}
-		if (infoForm.phone && !/(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(infoForm.phone)) {
-			errorInput.phone = 'Số điện thoại không đúng định dạng';
-		}
-		if (!infoForm.phone.trim()) {
-			errorInput.phone = 'Vui lòng nhập số điện thoại';
-		}
-		if (!infoForm.fb.trim()) {
-			errorInput.fb = 'Vui lòng nhập link facebook';
-		}
-		if (
-			infoForm.fb &&
-			!/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(infoForm.fb)
-		) {
-			errorInput.fb = 'Link Facebook không đúng định dạng';
-		}
-		if (!infoForm.skype.trim()) {
-			errorInput.skype = 'Vui lòng nhập link skype';
-		}
-		if (
-			infoForm.skype &&
-			!/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(infoForm.skype)
-		) {
-			errorInput.skype = 'Link Skype không đúng định dạng';
-		}
-
-		setError(errorInput);
-		if (Object.keys(errorInput).length === 0) {
-			console.log(infoForm);
-		}
+		check();
+		updateInfo(form);
 	}
 
 	return (
@@ -66,58 +70,34 @@ export function Info() {
 				<p>
 					Họ và tên<span>*</span>
 				</p>
-				<input
-					type="text"
-					name="name"
-					value={infoForm.name}
-					placeholder="Nguyễn Văn A"
-					onChange={handleChangeInput}
-				/>
+				<input type="text" name="name" value={form.name} placeholder="Nguyễn Văn A" onChange={inputChange} />
 				{error.name && <span className="error-text">{error.name}</span>}
 			</label>
 			<label>
 				<p>
 					Số điện thoại<span>*</span>
 				</p>
-				<input
-					type="text"
-					name="phone"
-					value={infoForm.phone}
-					placeholder="0949******"
-					onChange={handleChangeInput}
-				/>
+				<input type="text" name="phone" value={form.phone} placeholder="0949******" onChange={inputChange} />
 				{error.phone && <span className="error-text">{error.phone}</span>}
 			</label>
 			<label>
 				<p>
 					Email<span>*</span>
 				</p>
-				<input defaultValue="vuong.dang@dna.vn" disabled type="text" />
+				<input value={form.email} disabled type="text" />
 			</label>
 			<label>
 				<p>
 					Facebook<span>*</span>
 				</p>
-				<input
-					type="text"
-					name="fb"
-					value={infoForm.fb}
-					placeholder="Facebook url"
-					onChange={handleChangeInput}
-				/>
+				<input type="text" name="fb" value={form.facebook} placeholder="Facebook url" onChange={inputChange} />
 				{error.fb && <span className="error-text">{error.fb}</span>}
 			</label>
 			<label>
 				<p>
 					Skype<span>*</span>
 				</p>
-				<input
-					type="text"
-					name="skype"
-					value={infoForm.skype}
-					placeholder="Skype url"
-					onChange={handleChangeInput}
-				/>
+				<input type="text" name="skype" value={form.skype} placeholder="Skype url" onChange={inputChange} />
 				{error.skype && <span className="error-text">{error.skype}</span>}
 			</label>
 			<div className="btn main rect" onClick={handleSubmit}>
