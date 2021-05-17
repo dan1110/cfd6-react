@@ -1,20 +1,23 @@
 import React from 'react';
 import Accor from './Accor';
 
-export function Introduce() {
+export function Introduce({ courseDetail }) {
+	console.log(courseDetail);
 	return (
 		<section className="section-2">
 			<div className="container">
-				<p className="des">
-					Many Laravel apps don’t warrant the complexity of a full front-end framework like Vue or React. In
-					this series, we’ll walk through a handful of simple ways to add dynamic functionality to your apps.
-				</p>
+				<p className="des">description</p>
 				<h2 className="title">giới thiệu về khóa học</h2>
 				<div className="cover">
 					<img src="/img/course-detail-img.png" alt="" />
 				</div>
 				<h3 className="title">nội dung khóa học</h3>
-				<Accor
+
+				{/* {courseDetail.content.map((item) => (
+					<Accor {...item} />
+				))} */}
+
+				{/* <Accor
 					date="Ngày 1"
 					title="Giới thiệu HTML, SEO, BEM."
 					content="I'd like to demonstrate a powerful little pattern called
@@ -55,7 +58,7 @@ export function Introduce() {
 					content="I'd like to demonstrate a powerful little pattern called
           “Server-Fetched Partials” that offers some tangible benefits over
           alternatives like VueJS for simple page interactions."
-				/>
+				/> */}
 				<h3 className="title">yêu cầu cần có</h3>
 				<div className="row row-check">
 					<div className="col-md-6">Đã từng học qua HTML, CSS</div>

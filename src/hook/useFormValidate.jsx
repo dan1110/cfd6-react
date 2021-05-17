@@ -48,8 +48,7 @@ export default function useFormValidate(initialForm, validate) {
 				}
 			}
 		}
-		if (Object.keys(errorInput).length === 0) {
-		}
+		
 		setError(errorInput);
 		return error;
 	}
