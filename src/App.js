@@ -4,6 +4,7 @@ import './assets/custom.scss';
 import { Footer, Header } from './components';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
+import { Provider } from 'react-redux';
 import {
 	CoinIntroduce,
 	Cooprate,
@@ -23,6 +24,7 @@ import CountDown from './pages/CountDown';
 import authApi from './services/authApi';
 import homeApi from './services/homeApi';
 import profileApi from './services/profileApi';
+import store from './redux';
 
 export const Context = createContext({});
 
@@ -86,29 +88,31 @@ function App() {
 	}
 
 	return (
-		<Context.Provider value={{ ...state, handleLogin, handleLogout, updateInfo }}>
-			<BrowserRouter>
-				<Header />
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route path="/du-an" component={ProjectPage} />
-					<Route path="/team" component={Team} />
-					<Route path="/dang-ki/:slug" component={Register} />
-					<PrivateRoute path="/ca-nhan" component={Profile} />
-					<Route path="/faq" component={FAQ} />
-					{/* <Route path="/email" component={Email} /> */}
-					<Route path="/khoa-hoc/:slug" component={CourseDetail} />
-					<Route path="/khoa-hoc" component={Course} />
-					<Route path="/thanh-toan" component={Pay} />
-					<Route path="/lien-he" component={Cooprate} />
-					<Route path="/gioi-thieu-coin" component={CoinIntroduce} />
-					<Route path="/demo" component={CountDown} />
-					<Route component={ErrorPage} />
-				</Switch>
-				<Footer />
-				<Login />
-			</BrowserRouter>
-		</Context.Provider>
+		<Provider store={store}>
+			<Context.Provider value={{ ...state, handleLogin, handleLogout, updateInfo }}>
+				<BrowserRouter>
+					<Header />
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route path="/du-an" component={ProjectPage} />
+						<Route path="/team" component={Team} />
+						<Route path="/dang-ki/:slug" component={Register} />
+						<PrivateRoute path="/ca-nhan" component={Profile} />
+						<Route path="/faq" component={FAQ} />
+						{/* <Route path="/email" component={Email} /> */}
+						<Route path="/khoa-hoc/:slug" component={CourseDetail} />
+						<Route path="/khoa-hoc" component={Course} />
+						<Route path="/thanh-toan" component={Pay} />
+						<Route path="/lien-he" component={Cooprate} />
+						<Route path="/gioi-thieu-coin" component={CoinIntroduce} />
+						<Route path="/demo" component={CountDown} />
+						<Route component={ErrorPage} />
+					</Switch>
+					<Footer />
+					<Login />
+				</BrowserRouter>
+			</Context.Provider>
+		</Provider>
 	);
 }
 

@@ -1,14 +1,15 @@
 import React from 'react';
 
-export function Banner() {
+export function Banner({courseDetail}) {
+	console.log(courseDetail);
 	return (
 		<section className="banner style2" style={{ '--background': '#cde6fb' }}>
 			<div className="container">
 				<div className="info">
-					<h1></h1>
+					<h1>{courseDetail?.data?.title}</h1>
 					<div className="row">
 						<div className="date">
-							<strong>Khai giảng:</strong> 
+							<strong>Khai giảng:</strong> {courseDetail?.data?.opening_time}
 						</div>
 						<div className="time">
 							<strong>Thời lượng:</strong> 18 buổi

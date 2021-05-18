@@ -6,16 +6,16 @@ export function Introduce({ courseDetail }) {
 	return (
 		<section className="section-2">
 			<div className="container">
-				<p className="des">description</p>
+				<p className="des">{courseDetail?.data?.short_description}</p>
 				<h2 className="title">giới thiệu về khóa học</h2>
 				<div className="cover">
 					<img src="/img/course-detail-img.png" alt="" />
 				</div>
 				<h3 className="title">nội dung khóa học</h3>
 
-				{/* {courseDetail.content.map((item) => (
+				{courseDetail?.data?.content.map((item) => (
 					<Accor {...item} />
-				))} */}
+				))}
 
 				{/* <Accor
 					date="Ngày 1"
