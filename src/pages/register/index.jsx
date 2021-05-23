@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import useFormValidate from '../../hook/useFormValidate';
+import { COURSE_REGISTER } from '../../redux/type';
 import courseRegisterApi from '../../services/courseRegisterApi';
 export function Register() {
-	const [state, setState] = useState();
 	let { slug } = useParams();
+	let { successCourse } = useSelector((state) => state);
+	let dispatch = useDispatch();
 	let { form, error, setForm, inputChange, check } = useFormValidate(
 		{
 			name: '',
@@ -72,12 +75,13 @@ export function Register() {
 	async function handleSubmit() {
 		check();
 
-		// console.log(form);
 		let res = await courseRegisterApi.addCourse(form, slug);
-		// if (res?.success) {
-		// 	setState(res.success);
-		// }
-		console.log(res.success);
+		if (res?.success) {
+			dispatch({
+				type: COURSE_REGISTER,
+				payload: res.success,
+			});
+		}
 	}
 
 	return (
@@ -194,21 +198,21 @@ export function Register() {
 							<div className="btn main rect" onClick={handleSubmit}>
 								đăng ký
 							</div>
-							{state && (
-								<p
-									className="success"
-									style={{
-										color: 'green',
-										fontSize: 20,
-										textAlign: 'center',
-										marginTop: 20,
-										fontWeight: 700,
-									}}
-								>
-									{state}
-								</p>
-							)}
 						</div>
+						{successCourse && (
+							<p
+								className="success"
+								style={{
+									color: 'green',
+									fontSize: 20,
+									textAlign: 'center',
+									marginTop: 20,
+									fontWeight: 700,
+								}}
+							>
+								{successCourse}
+							</p>
+						)}
 					</div>
 				</div>
 			</section>

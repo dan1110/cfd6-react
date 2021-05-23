@@ -1,7 +1,6 @@
 import React from 'react';
 
 export function Banner({courseDetail}) {
-	console.log(courseDetail);
 	return (
 		<section className="banner style2" style={{ '--background': '#cde6fb' }}>
 			<div className="container">

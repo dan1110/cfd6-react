@@ -1,7 +1,12 @@
-import { createStore } from 'redux';
-import CountReducer from './reducer/countReducer';
+import { applyMiddleware, createStore } from 'redux';
+import AuthReducer from './reducer/authReducer';
 
-let reducer = CountReducer;
+let reducer = AuthReducer;
+
+// const middleware = (store) => (next) => (action) => {
+// 	console.log(action);
+// 	next(action);
+// };applyMiddleware(middleware)
 
 let store = createStore(reducer);
 

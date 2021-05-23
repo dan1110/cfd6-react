@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import reactDom from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Context } from '../App';
 import useAuth from '../hook/useAuth';
@@ -7,6 +8,10 @@ import useFormValidate from '../hook/useFormValidate';
 import authApi from '../services/authApi';
 
 export default function Login() {
+	const state = useSelector((state) => state);
+
+	const dispatch = useDispatch();
+
 	let { form, error, inputChange, check } = useFormValidate(
 		{
 			username: '',
@@ -39,26 +44,35 @@ export default function Login() {
 		document.querySelector('.res').style.display = 'none';
 	}
 
-	let { handleLogin, loginErr } = useAuth();
-
 	async function onSubmit() {
 		let inputError = check();
 
 		if (Object.keys(inputError).length === 0) {
-			let res = await handleLogin(form);
-			if (res?.success) {
+			// let res = await handleLogin(form);
+
+			let res = await authApi.makeLogin(form);
+
+			if (res?.data) {
+				dispatch({
+					type: 'SUBMIT_LOGIN',
+					payload: res.data,
+				});
 				closePopup();
+			} else if (res?.error) {
+				dispatch({
+					type: 'ERROR',
+					payload: res.error,
+				});
 			}
 		}
 	}
-
 	return reactDom.createPortal(
 		<div className="popup-form popup-login res" style={{ display: 'none' }}>
 			<div className="wrap">
 				{/* login-form */}
 				<div className="ct_login" style={{ display: 'block' }}>
 					<h2 className="title">Đăng nhập</h2>
-					{loginErr && <p className="error-text">{loginErr}</p>}
+					{state?.loginErr && <p className="error-text">{state?.loginErr}</p>}
 					<input
 						type="text"
 						value={form.username}

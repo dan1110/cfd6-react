@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useAuth from '../../../hook/useAuth';
 import useFormValidate from '../../../hook/useFormValidate';
+import homeApi from '../../../services/homeApi';
 import profileApi from '../../../services/profileApi';
 
 export function Info() {
-	let { data, updateInfo } = useAuth();
-	console.log(data);
-
+	// let { data, updateInfo } = useAuth();
+	// console.log(data);
+	let { data } = useSelector((state) => state);
+	let dispatch = useDispatch();
 	let { form, error, setForm, inputChange, check } = useFormValidate(
 		{
 			...data,
@@ -25,7 +28,7 @@ export function Info() {
 					required: true,
 					pattern: 'email',
 				},
-				fb: {
+				facebook: {
 					required: true,
 					pattern: 'fb',
 				},
@@ -47,7 +50,7 @@ export function Info() {
 					required: 'Email không được bỏ trống',
 					pattern: 'Email không đúng định dạng',
 				},
-				fb: {
+				facebook: {
 					required: 'Facebook không được bỏ trống',
 					pattern: 'Link Facebook không đúng dạng',
 				},
@@ -59,9 +62,18 @@ export function Info() {
 		}
 	);
 
-	function handleSubmit() {
-		check();
-		updateInfo(form);
+	async function handleSubmit() {
+		let errorInput = check();
+		// updateInfo(form);
+		if (Object.keys(errorInput).length === 0) {
+			let res = await profileApi.updateInfo(form);
+			if (res?.data) {
+				dispatch({
+					type: 'UPDATE_INFO',
+					payload: res.data,
+				});
+			}
+		}
 	}
 
 	return (
@@ -90,8 +102,14 @@ export function Info() {
 				<p>
 					Facebook<span>*</span>
 				</p>
-				<input type="text" name="fb" value={form.facebook} placeholder="Facebook url" onChange={inputChange} />
-				{error.fb && <span className="error-text">{error.fb}</span>}
+				<input
+					type="text"
+					name="facebook"
+					value={form.facebook}
+					placeholder="Facebook url"
+					onChange={inputChange}
+				/>
+				{error.facebook && <span className="error-text">{error.facebook}</span>}
 			</label>
 			<label>
 				<p>

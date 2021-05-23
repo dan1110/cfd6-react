@@ -1,19 +1,33 @@
 import { useEffect, useState } from 'react';
 import CourseList from '../../components/CourseList';
 import homeApi from '../../services/homeApi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Action, Banner, Different, Gallery, Testimonial } from './component';
+import { HOME } from '../../redux/type';
+import { Fragment } from 'react';
 
 export function Home() {
-	const state = useSelector((state) => state);
-	console.log(state);
+	let { home } = useSelector((state) => state);
+	console.log(home);
+
+	let dispatch = useDispatch();
+
+	useEffect(async () => {
+		let res = await homeApi.home();
+		dispatch({
+			type: HOME,
+			payload: res,
+		});
+	}, []);
+
+	if (!home?.review?.length > 0) return <Fragment />;
 	return (
 		<main className="homepage" id="main">
 			<Banner />
-			<CourseList />
+			<CourseList offline={home?.offline} online={home?.online} />
 			<Different />
-			<Testimonial />
-			<Gallery />
+			<Testimonial review={home?.review} />
+			<Gallery gallery={home?.gallery} />
 			<Action />
 		</main>
 	);

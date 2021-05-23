@@ -1,11 +1,14 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../hook/useAuth';
 import useDeLayLink from '../hook/useDelayLink';
 
 export function Header() {
 	let deLayLink = useDeLayLink();
-	let { login, handleLogout, data } = useAuth();
+	const dispatch = useDispatch();
+	// let { login, handleLogout, data } = useAuth();
+	let { login, data } = useSelector((state) => state);
 
 	function overlayClick() {
 		document.body.classList.remove('.menu-is-show');
@@ -20,9 +23,12 @@ export function Header() {
 		document.querySelector('.res').style.display = 'flex';
 	}
 
-	function onLogOut(e) {
+	function logOut(e) {
 		e.preventDefault();
-		handleLogout();
+		// handleLogout();
+		dispatch({
+			type: 'LOGOUT',
+		});
 	}
 	return (
 		<>
@@ -60,9 +66,9 @@ export function Header() {
 								</div>
 								<div className="hamberger"></div>
 								<div className="sub">
-									<Link to="/ca-nhan">Khóa học của tôi</Link>
-									<a href="#">Thông tin tài khoản</a>
-									<a href="#" onClick={onLogOut}>
+									<Link to="/ca-nhan/khoa-hoc-cua-toi">Khóa học của tôi</Link>
+									<Link to="/ca-nhan">Thông tin tài khoản</Link>
+									<a href="#" onClick={logOut}>
 										Đăng xuất
 									</a>
 								</div>

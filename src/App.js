@@ -32,7 +32,7 @@ function App() {
 	let [state, setState] = useState({
 		login: JSON.parse(localStorage.getItem('login')),
 		loginErr: '',
-		data: JSON.parse(localStorage.getItem('data')) || {},
+		// data: JSON.parse(localStorage.getItem('data')) || {},
 	});
 
 	useEffect(() => {
@@ -40,17 +40,6 @@ function App() {
 	}, [state.login]);
 
 	async function handleLogin(data) {
-		// if (data.username == "admin@gmail.com" && data.password === "a12345678") {
-		//   setState({
-		//     ...state,
-		//     login: {
-		//       name: "Dang Thuyen Vuong",
-		//       avt: "/img/avt.png",
-		//     },
-		//   });
-		// } else {
-		//   return "Sai thông tin đăng nhập";
-		// }
 		let res = await authApi.makeLogin(data);
 		if (res.data) {
 			localStorage.setItem('data', JSON.stringify(res.data));

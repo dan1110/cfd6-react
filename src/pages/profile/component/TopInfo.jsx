@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import useAuth from '../../../hook/useAuth';
 
 export function TopInfo({}) {
-	let { data } = useAuth();
+	let { data } = useSelector((state) => state);
+
 	return (
 		<div className="top-info">
 			<div className="avatar">

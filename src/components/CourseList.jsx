@@ -1,13 +1,6 @@
-import { useEffect, useState } from 'react';
-import homeApi from '../services/homeApi';
 import { CourseItem } from './CourseItem';
 
-export default function CourseList() {
-	let [coursList, setCoursList] = useState({ online: [], offline: [] });
-	useEffect(() => {
-		homeApi.home().then((res) => setCoursList(res));
-	}, []);
-
+export default function CourseList({ offline, online }) {
 	return (
 		<>
 			<section className="section-courseoffline">
@@ -20,7 +13,7 @@ export default function CourseList() {
 						<h2 className="main-title">Khóa học Offline</h2>
 					</div>
 					<div className="list row">
-						{coursList.offline.map((item) => (
+						{offline?.map((item) => (
 							<CourseItem {...item} key={item._id} />
 						))}
 					</div>
@@ -32,7 +25,7 @@ export default function CourseList() {
 						<h2 className="main-title">Khóa học Online</h2>
 					</div>
 					<div className="list row">
-						{coursList.online.map((item) => (
+						{online?.map((item) => (
 							<CourseItem {...item} key={item._id} />
 						))}
 					</div>
